@@ -14,7 +14,9 @@ logoutButton.addEventListener('click', () => {
     logout();
 });
 
-
+window.addEventListener('load', async() => {
+    displayFamilies();
+});
 
 async function displayFamilies() {
     // fetch families from supabase
