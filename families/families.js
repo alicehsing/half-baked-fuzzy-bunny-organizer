@@ -48,10 +48,10 @@ async function displayFamilies() {
             // append the bunniesEl and nameEl to the familyEl
             familyEl.append(bunniesEl, nameEl);
         }
-        console.log(familyEl);
+        
         // append the familyEl to the familiesEl
         familiesEl.append(familyEl);
-    }
+    }   
 
 
 }
