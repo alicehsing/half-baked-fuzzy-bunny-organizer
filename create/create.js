@@ -8,6 +8,7 @@ import {
 const form = document.querySelector('.bunny-form');
 const logoutButton = document.getElementById('logout');
 
+//on submit, create a bunny. The form should include a name for the bunny and a dropdown for the family (from the fetched families in supabase).
 form.addEventListener('submit', async(e) => {
     // prevent default
     e.preventDefault();
@@ -25,8 +26,7 @@ form.addEventListener('submit', async(e) => {
     form.reset();
 });
 
-
-
+//on load, fetch families. Use these families to create the dropdown to let the user attach a bunny to a family.
 window.addEventListener('load', async() => {
     // let's dynamically fill in the families dropdown from supabase
     // grab the select HTML element from the DOM

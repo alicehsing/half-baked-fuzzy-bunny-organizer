@@ -8,8 +8,8 @@ export async function getUser() {
     return client.auth.session();
 }
 
+// fetch all families and their bunnies
 export async function getFamilies() {
-    // fetch all families and their bunnies
     const response = await client
         .from('loving_families')
         .select('*, fuzzy_bunnies (*)');
@@ -17,8 +17,17 @@ export async function getFamilies() {
     return checkError(response);    
 }
 
+// create a bunny using the bunny argument
+export async function createBunny(bunny) {   
+    const response = await client
+        .from('fuzzy_bunnies')
+        .insert([bunny]);
+
+    return checkError(response);   
+}
+
+// delete a single bunny using the id argument
 export async function deleteBunny(id) {
-    // delete a single bunny using the id argument
     const response = await client
         .from('fuzzy_bunnies')
         .delete()
@@ -28,11 +37,11 @@ export async function deleteBunny(id) {
     return checkError(response);    
 }
 
-export async function createBunny(bunny) {
-    // create a bunny using the bunny argument
+//stretch goal: create a new family using the family argument
+export async function createFamily(family) {   
     const response = await client
-        .from('fuzzy_bunnies')
-        .insert(bunny);
+        .from('loving_families')
+        .insert([family]);
 
     return checkError(response);   
 }
