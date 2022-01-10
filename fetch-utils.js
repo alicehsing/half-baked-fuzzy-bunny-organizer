@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const SUPABASE_URL = 'https://gxwgjhfyrlwiqakdeamc.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNjQxMTMxMiwiZXhwIjoxOTUxOTg3MzEyfQ.PHekiwfLxT73qQsLklp0QFEfNx9NlmkssJFDnlvNIcA';
 
@@ -7,26 +8,43 @@ export async function getUser() {
     return client.auth.session();
 }
 
+// fetch all families and their bunnies
 export async function getFamilies() {
-    // fetch all families and their bunnies
+    const response = await client
+        .from('loving_families')
+        .select('*, fuzzy_bunnies (*)');
 
     return checkError(response);    
 }
 
+// create a bunny using the bunny argument
+export async function createBunny(bunny) {   
+    const response = await client
+        .from('fuzzy_bunnies')
+        .insert([bunny]);
+
+    return checkError(response);   
+}
+
+// delete a single bunny using the id argument
 export async function deleteBunny(id) {
-    // delete a single bunny using the id argument
+    const response = await client
+        .from('fuzzy_bunnies')
+        .delete()
+        .match({ id: id })
+        .single();
 
     return checkError(response);    
 }
 
+//stretch goal: create a new family using the family argument
+export async function createFamily(family) {   
+    const response = await client
+        .from('loving_families')
+        .insert([family]);
 
-export async function createBunny(bunny) {
-    // create a bunny using the bunny argument
-
-    return checkError(response);    
+    return checkError(response);   
 }
-
-
 
 export async function checkAuth() {
     const user = await getUser();
