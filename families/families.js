@@ -35,6 +35,7 @@ async function displayFamilies() {
         // for each of this family's bunnies
         for (let bunny of family.fuzzy_bunnies) {
             const newBunnyEl = renderBunny(bunny);
+            
              // add an event listener to the bunny el. On click, delete the bunny, then refetch and redisplay all families.
             newBunnyEl.addEventListener('click', async() => {
                 await deleteBunny(bunny.id);
@@ -47,7 +48,7 @@ async function displayFamilies() {
             // append the bunniesEl and nameEl to the familyEl
             familyEl.append(bunniesEl, nameEl);
         }
-        
+
         // append the familyEl to the familiesEl
         familiesEl.append(familyEl);
     }   
