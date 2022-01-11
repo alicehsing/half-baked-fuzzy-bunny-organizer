@@ -17,7 +17,7 @@ export async function getFamilies() {
     return checkError(response);    
 }
 
-// create a bunny using the bunny argument
+//create a bunny using the bunny argument
 export async function createBunny(bunny) {   
     const response = await client
         .from('fuzzy_bunnies')
@@ -37,7 +37,7 @@ export async function deleteBunny(id) {
     return checkError(response);    
 }
 
-//stretch goal: create a new family using the family argument
+//stretch goal#1: create a new family using the family argument
 export async function createFamily(family) {   
     const response = await client
         .from('loving_families')
@@ -45,6 +45,15 @@ export async function createFamily(family) {
 
     return checkError(response);   
 }
+
+//stretch goal#3: fetch all bunnies with new properties
+// export async function getBunnies() {
+//     const response = await client
+//         .from('fuzzy_bunnies')
+//         .select('*');
+    
+//     return checkError(response);   
+// }
 
 export async function checkAuth() {
     const user = await getUser();
